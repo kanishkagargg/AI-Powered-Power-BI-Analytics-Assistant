@@ -12,13 +12,26 @@ This project builds a lightweight chat assistant for a PowerBI-style dataset wit
 
 ## Tech Stack
 
-- Python 3.x
-- FastAPI for backend middleware
-- Streamlit for the chat UI
-- DuckDB for local analytical query execution
-- LangGraph for the node-based processing graph
-- Google Gemini generative models via `langchain_google_genai`
-- JSON files for storing chat memory and conversation summaries
+#### Frontend
+- Streamlit
+
+#### API Layer
+- FastAPI
+
+#### Orchestration
+- LangGraph
+
+#### LLM
+- Google Gemini 2.5 Flash
+
+#### Database
+- DuckDB
+
+#### Memory
+- JSON-based persistent chat storage
+
+#### Language
+- Python
 
 ## Architecture & Separation of Concerns
 The application is built as a modular pipeline with clear responsibilities:
