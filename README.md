@@ -3,12 +3,57 @@
 ## Objective
 This project builds a lightweight chat assistant for a PowerBI-style dataset with FastAPI middleware, dynamic SQL generation, and session memory. It is designed to answer analytical questions more precisely than a generic Copilot-style assistant by generating exact SQL, executing it against the local dataset, returning both the result and the query and maintaining conversational context across multiple chat surpassing PowerBI Copilot capabilities.
 
-### Advantages over Copilot
+### Why Not Just Use Copilot?
+
+While dashboard copilots are useful for summarizing visuals and answering common questions, they can be constrained by:
+
+- Existing dashboard measures and dimensions
+- Predefined semantic model logic
+- Limited conversational memory
+- Dataset size limitations
+- Reduced transparency into how answers are generated
+
+This project addresses those limitations by: 
+
 - Dynamic SQL-based analysis instead of heuristic dashboard inference
-- Uses actual dataset queries, not precomputed dashboard bins
+- Well defined schema that explains raw data used + dashboard logic
+- Uses actual dataset queries, not just precomputed dashboard calculations
 - Returns query text and result evidence for transparency
 - Preserves chat history and summary memory across sessions
-- Built for question-driven BI exploration rather than generic code assistance
+- Cross-dashboard knowledge (Tentative)
+
+## Demo Use Cases
+
+[Watch full Demo Video](./PBI%20Chatbot%20Demo%20Video.mp4)
+
+### 1) Age bracket count by gender
+- User asked: `How many females are there within age bracket of 54-60?`
+- Copilot answer: `411,067` based on a rigid dashboard range of `54-62`
+<img width="700" height="285.7" alt="image (2)" src="https://github.com/user-attachments/assets/e5fbc9d1-657d-4d84-b153-988954b563ef" />
+
+
+- Our chatbot answer: 
+  - `Based on the query, there are **319,826** females in the 54-60 age bracket.`
+  - SQL:
+
+```sql
+SELECT COUNT(*) FROM "db.csv" WHERE gender = 'Female' AND age BETWEEN 54 AND 60
+```
+
+<img width="700" height="285.7" alt="image" src="https://github.com/user-attachments/assets/48c43d12-c0cf-44bc-9d53-5f845956838a" />
+
+
+### 2) Average age in Aaronberg
+- User asked: `What is the average age of customers living in Aaronberg?`
+- Copilot answer: `54.9` with a warning about partial model analysis and reduced confidence
+<img width="700" height="285.7" alt="image (3)" src="https://github.com/user-attachments/assets/636fb7fa-4631-42c4-b729-dd74380f0b90" />
+
+- Our chatbot answer:
+  - `The average age of our customers in Aaronberg is approximately 55 years old.`
+  - The system returns the result with confidence and avoids unnecessary doubt
+ 
+<img width="700" height="285.7" alt="image" src="https://github.com/user-attachments/assets/0ce7a9c6-5f76-4c50-b128-fb7bdd3f2b8f" />
+
 
 ## Tech Stack
 
@@ -38,6 +83,8 @@ The application is built as a modular pipeline with clear responsibilities:
 
 - `frontend/streamlit_app.py`
   - UI layer for users to ask questions and review previous chat history
+- `backend/schema_docs`
+  - Schema about the dashboard: table name, columns, all transformations done in dashboard(measure, calculated columns etc)
 - `backend/app.py`
   - FastAPI middleware exposing chat endpoints
 - `backend/graph.py`
@@ -55,6 +102,8 @@ The application is built as a modular pipeline with clear responsibilities:
   - chat persistence helper reading/writing JSON files under `backend/chat_store`
 - `backend/state.py`
   - typed state definition for the chat workflow
+- `backend/chat_store`
+  - runtime json chats storage
 
 ## FastAPI Middleware and Endpoints
 The backend exposes two endpoints:
@@ -110,24 +159,6 @@ This project tracks conversations as chat sessions:
 - A summary is kept for the chat so the system can use context across follow-up questions
 - This enables conversational BI exploration, not just single-turn queries
 
-## Demo Use Cases
-### 1) Age bracket count by gender
-- User asked: `How many females are there within age bracket of 54-60?`
-- Copilot answer: `411,067` based on a rigid dashboard range of `54-62`
-- Our chatbot answer: 
-  - `Based on the query, there are **319,826** females in the 54-60 age bracket.`
-  - SQL:
-
-```sql
-SELECT COUNT(*) FROM "db.csv" WHERE gender = 'Female' AND age BETWEEN 54 AND 60
-```
-
-### 2) Average age in Aaronberg
-- User asked: `What is the average age of customers living in Aaronberg?`
-- Copilot answer: `54.9` with a warning about partial model analysis and reduced confidence
-- Our chatbot answer:
-  - `The average age of our customers in Aaronberg is approximately 55 years old.`
-  - The system returns the result with confidence and avoids unnecessary doubt
 
 ## Improvements and Production Considerations
 ### Improvements
