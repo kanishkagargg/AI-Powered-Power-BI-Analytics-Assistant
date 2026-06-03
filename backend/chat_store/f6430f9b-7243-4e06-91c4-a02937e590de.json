@@ -1,0 +1,16 @@
+{
+    "summary": "The analysis identified **319,826** females within the 54-60 age bracket. This number represents a specific, high-value demographic segment, often characterized by significant purchasing power and key life events such as preparing for retirement or investing in health and wellness. This data is crucial for businesses looking to quantify the potential market size for targeted marketing campaigns, product development, and strategic planning aimed at this particular consumer group.",
+    "title": "Females 54-60: High-Value Market Segment",
+    "messages": [
+        {
+            "question": "How many females are there within age bracket of 54-60?",
+            "assistant": "Based on the query, there are **319,826** females in the 54-60 age bracket.\n\n**Business Insight:**\n\nThis number quantifies a specific, high-value demographic. This segment is often characterized by significant purchasing power and key life events, such as preparing for retirement or investing in health and wellness. This data is critical for measuring the potential market size for targeted marketing campaigns, product development, and strategic planning.",
+            "sql_query": "SELECT COUNT(*) FROM \"db.csv\" WHERE gender = 'Female' AND age BETWEEN 54 AND 60",
+            "query_result": [
+                {
+                    "count_star()": 319826
+                }
+            ]
+        }
+    ]
+}

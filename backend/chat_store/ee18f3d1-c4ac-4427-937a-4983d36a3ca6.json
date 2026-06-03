@@ -1,0 +1,16 @@
+{
+    "summary": "### Summary Update: Customer Age in Aaronberg\n\nAn analysis of customer demographics in Aaronberg reveals that the average age of customers in this location is approximately **55 years old**. This signifies a mature and established customer base.\n\nThis demographic profile carries several key business implications:\n\n*   **Marketing Strategy:** Campaigns should be adapted to appeal to customers who value quality and reliability, with channels like email and Facebook likely to be most effective.\n*   **Product Offerings:** This segment, often in peak earning years or nearing retirement, presents a strong opportunity for premium products and services.\n*   **Customer Lifetime Value (CLV):** This represents a stable customer segment with high potential for retention and loyalty, provided their specific needs are met effectively.",
+    "title": "Aaronberg Customer Age: Business Implications",
+    "messages": [
+        {
+            "question": "What is the average age of customers  living in Aaronberg?",
+            "assistant": "Of course. Here is an explanation of the query results in concise, analytical business language.\n\n***\n\n### Analysis of Customer Age in Aaronberg\n\nThe average age of our customers in Aaronberg is **approximately 55 years old**.\n\nThis indicates a mature and established customer base in this location. Key business implications include:\n\n*   **Marketing Strategy:** Campaigns should be tailored to a demographic that values quality and reliability. Channels like email and Facebook are likely to be more effective than those targeting younger audiences (e.g., TikTok).\n*   **Product Interest:** This demographic is likely in their peak earning years or nearing retirement, suggesting a higher potential for premium products and services.\n*   **Customer Lifetime Value:** This is a stable customer segment, representing an opportunity for high retention and loyalty if their needs are met effectively.",
+            "sql_query": "SELECT AVG(age) FROM \"db.csv\" WHERE city = 'Aaronberg'",
+            "query_result": [
+                {
+                    "avg(age)": 54.91304347826087
+                }
+            ]
+        }
+    ]
+}
