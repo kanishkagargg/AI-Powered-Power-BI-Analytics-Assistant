@@ -24,8 +24,6 @@ This project addresses those limitations by:
 
 ## Demo Use Cases
 
-[Watch full Demo Video](./PBI%20Chatbot%20Demo%20Video.mp4)
-
 ### 1) Age bracket count by gender
 - User asked: `How many females are there within age bracket of 54-60?`
 - Copilot answer: `411,067` based on a rigid dashboard range of `54-62`
@@ -53,6 +51,11 @@ SELECT COUNT(*) FROM "db.csv" WHERE gender = 'Female' AND age BETWEEN 54 AND 60
   - The system returns the result with confidence and avoids unnecessary doubt
  
 <img width="700" height="285.7" alt="image" src="https://github.com/user-attachments/assets/0ce7a9c6-5f76-4c50-b128-fb7bdd3f2b8f" />
+
+### 🎥 Demo
+Watch Demo Video:
+
+https://github.com/user-attachments/assets/5128cba5-fe47-4621-b728-7d4b63877b13
 
 
 ## Tech Stack
